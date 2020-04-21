@@ -10,8 +10,9 @@ setup(
         'gpflow',
         'numpy',
         'pandas',
-        'google.cloud',
+        'google-cloud-bigquery',
         'bokeh',
-        'scipy'
+        'scipy',
+        'matplotlib'
     ],
 )

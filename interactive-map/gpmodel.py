@@ -5,7 +5,7 @@ from gpflow.utilities import print_summary
 import pandas as pd
 from google.cloud import bigquery
 
-client = bigquery.Client.from_service_account_json("../../../airqo-250220-c81b55f1dc21.json")
+client = bigquery.Client()
 
 def get_static_channels():
     sql = """
