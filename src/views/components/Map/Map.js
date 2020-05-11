@@ -48,7 +48,6 @@ import jsonexport from 'jsonexport'
 let geoJsonPolygon;
 
  const typeOptions = [
-    { value: 'JSON', label: 'JSON' },
     { value: 'CSV', label: 'CSV'},
     { value: 'PDF', label: 'PDF'}
   ];
@@ -73,7 +72,7 @@ class Maps extends React.Component {
       openConfirm: false,
       savedPlan: {},
       space_name: "",
-      selectedOption: null,
+      selectedOption: {value:' ',label:''},
     };
  
 
@@ -162,9 +161,9 @@ doc.autoTable(col, rows, {margin: {top: 80}, beforePageContent: header});
 doc.save('recommendationP.pdf');
 }
 
-   handleDownloadChange = (selectedOption) => {
-     this.setState({ [selectedOption.name]:[selectedOption.v] });
-     console.log(`Option selected:`, selectedOption.value)
+   handleDownloadChange = (selected) => {
+     this.setState( {selectedOption:selected});
+     console.log(`Option selected:`, selected)
    }
   // Handles saved space confirmation feedback
   handleConfirmClose = () => {
@@ -293,8 +292,8 @@ doc.save('recommendationP.pdf');
           this.setState({
             polygons: myPolygons
           });
-
-jsonexport(myPolygons,function(err, csv){
+if(this.state.selectedOption.value ==="CSV"){
+  jsonexport(myPolygons,function(err, csv){
     if(err) return console.log(err);
     var filename ="expt.csv"
       var link = document.createElement('a');
@@ -305,8 +304,8 @@ jsonexport(myPolygons,function(err, csv){
   link.click();
   document.body.removeChild(link); 
 });
-/*create pdf*/
-var doc = new jsPDF('p', 'pt','a4');
+}else{
+  var doc = new jsPDF('p', 'pt','a4');
  var rows = [];  
   var header = function (data) {
                     doc.setFontSize(18);
@@ -322,6 +321,12 @@ var col =['type','District','Subcounty','Parish','lat','long']
  });     
 doc.autoTable(col, rows, {margin: {top: 80}, beforePageContent: header});
 doc.save('recommendation.pdf');
+}
+/*
+}/*else{
+/*create pdf*/
+/*
+
 this.generatePDF(myPolygons)
 
 
@@ -343,7 +348,8 @@ document.body.appendChild(link);
 link.click();
 
 // Remove the Anchor link form the web page or application
-document.body.removeChild(link);
+document.body.removeChild(link);*/
+
 
         } catch (error) {
           console.log("An error occured. Please try again");
@@ -425,7 +431,7 @@ document.body.removeChild(link);
             />
              
 
-            <Select options = {typeOptions} onChange ={this.handleDownloadChange}/>
+            <Select options = {typeOptions} value ={this.state.selectedOption}onChange ={this.handleDownloadChange}/>
             <CardActions>
               <Button
                 type="submit"
