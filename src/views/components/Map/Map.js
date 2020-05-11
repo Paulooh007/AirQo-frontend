@@ -142,28 +142,11 @@ class Maps extends React.Component {
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  generatePDF = (objd) => {
-var doc = new jsPDF('p', 'pt','a4');
- var rows = [];  
-  var header = function (data) {
-                    doc.setFontSize(18);
-                    doc.setTextColor(40);
-                    doc.setFontStyle('normal');
-//doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
-                    doc.text("RECOMMENDED PARISHES", data.settings.margin.left, 50);
-                }; 
-var col =['type','District','Subcounty','Parish','lat','long']
-  objd.forEach(element => {      
-        var temp = [element.type,element.properties.district,element.properties.subcounty,element.properties.parish,element.properties.lat,element.properties.long];
-        rows.push(temp);
- });     
-doc.autoTable(col, rows, {margin: {top: 80}, beforePageContent: header});
-doc.save('recommendationP.pdf');
-}
+
 
    handleDownloadChange = (selected) => {
      this.setState( {selectedOption:selected});
-     console.log(`Option selected:`, selected)
+     //console.log(`Option selected:`, selected)
    }
   // Handles saved space confirmation feedback
   handleConfirmClose = () => {
@@ -292,63 +275,50 @@ doc.save('recommendationP.pdf');
           this.setState({
             polygons: myPolygons
           });
+        {/*download files*/}
+         let toCsv =[]
 if(this.state.selectedOption.value ==="CSV"){
-  jsonexport(myPolygons,function(err, csv){
-    if(err) return console.log(err);
-    var filename ="expt.csv"
-      var link = document.createElement('a');
-  link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv));
-  link.setAttribute('download', filename);
-  link.style.visibility = 'hidden';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link); 
-});
-}else{
-  var doc = new jsPDF('p', 'pt','a4');
- var rows = [];  
-  var header = function (data) {
-                    doc.setFontSize(18);
-                    doc.setTextColor(40);
-                    doc.setFontStyle('normal');
-//doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
-                    doc.text("RECOMMENDED PARISHES", data.settings.margin.left, 50);
-                }; 
-var col =['type','District','Subcounty','Parish','lat','long']
-  myPolygons.forEach(element => {      
-        var temp = [element.type,element.properties.district,element.properties.subcounty,element.properties.parish,element.properties.lat,element.properties.long];
-        rows.push(temp);
- });     
-doc.autoTable(col, rows, {margin: {top: 80}, beforePageContent: header});
-doc.save('recommendation.pdf');
-}
-/*
-}/*else{
-/*create pdf*/
-/*
-
-this.generatePDF(myPolygons)
-
-
-//array to csv
-const csv = rows.map(row => row.map(item => (typeof item === 'string' && item.indexOf(',') >= 0) ? `"${item}"`: String(item)).join(',')).join('\n');
-
-// Format the CSV string
-const data = encodeURI('data:text/csv;charset=utf-8,' + csv);
-
-// Create a virtual Anchor tag
-const link = document.createElement('a');
-link.setAttribute('href', data);
-link.setAttribute('download', 'export.csv');
-
-// Append the Anchor tag in the actual web page or application
-document.body.appendChild(link);
-
-// Trigger the click event of the Anchor link
-link.click();
-
-// Remove the Anchor link form the web page or application
-document.body.removeChild(link);*/
+         
+            myData.forEach(element => {
+                toCsv.push({
+                type: "Feature",
+                properties: {
+              district: element["properties.district"],
+                  subcounty: element["properties.subcounty"],
+                  parish: element["properties.parish"],
+                  lat: element["properties.lat"],
+                  long: element["properties.long"],
+                }
+              });});
+    jsonexport(toCsv,function(err, csv){
+        if(err) return console.log(err);
+        var filename ="exportRecommendation.csv"
+        var link = document.createElement('a');
+      link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv));
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link); 
+  });
+      }else{
+        var doc = new jsPDF('p', 'pt','a4');
+       var rows = [];  
+        var header = function (data) {
+                          doc.setFontSize(18);
+                          doc.setTextColor(40);
+                          doc.setFontStyle('normal');
+      //doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
+                          doc.text("RECOMMENDED PARISHES", data.settings.margin.left, 50);
+                      }; 
+      var col =['type','District','Subcounty','Parish','lat','long']
+        myPolygons.forEach(element => {      
+              var temp = [element.type,element.properties.district,element.properties.subcounty,element.properties.parish,element.properties.lat,element.properties.long];
+              rows.push(temp);
+       });     
+      doc.autoTable(col, rows, {margin: {top: 80}, beforePageContent: header});
+      doc.save('recommendation.pdf');
+      }
 
 
         } catch (error) {
@@ -405,7 +375,7 @@ document.body.removeChild(link);*/
       height: "auto",
       width: 250,
       opacity: 0.6,
-      top: "20em"
+      top: "27em"
     };
 
     return (
@@ -430,8 +400,16 @@ document.body.removeChild(link);*/
               
             />
              
-
-            <Select options = {typeOptions} value ={this.state.selectedOption}onChange ={this.handleDownloadChange}/>
+          <TextField
+              name="mustHaveCoord"
+              label="'Must Have' Locations"
+              placeholder="[[Lng, Lat],...,[Lng, Lat]]"
+              onChange={this.changeHandler}
+              value={mustHaveCoord}
+              fullWidth
+              margin="normal"
+            />
+            <Select options = {typeOptions} value ={this.state.selectedOption}onChange ={this.handleDownloadChange} placeholder="download file"/>
             <CardActions>
               <Button
                 type="submit"
