@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardContent, CardHeader, Button, Divider, CardActions } from '@material-ui/core';
+import { Grid, Card, CardContent, CardHeader, Button, Divider, CardActions, Avatar } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 import { Line,Bar } from 'react-chartjs-2';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -10,6 +11,7 @@ import 'chartjs-plugin-annotation';
 import palette from 'theme/palette';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import ReactTooltip from "react-tooltip";
 //import Legend from './components/Map/Legend'
  
 
@@ -319,8 +321,6 @@ const Dashboard = props => {
           
           {/* <Divider /> */}
         
-
-
           <Grid
             container
             spacing={0}
@@ -335,34 +335,38 @@ const Dashboard = props => {
               xl={2}
               xs={12}
             >
-             
-              <Pm25Levels background="#45e50d" 
-                pm25level="Good"
+              <Pm25Levels  className="tooltip-example" 
+              data-tip="Hello<br/>multiline<br />tooltip"  
+              data-multiline="true" data-iscapture="true" 
+              data-html="true"
+              background="#45e50d" 
+              pm25level="Good"
                 //pm25levelText = "(0 - 12)"
-                
-              />
+              /> <ReactTooltip place="top" type="light" effect="solid"/>
             </Grid>
+
             <Grid
-              item
-              lg={2}
-              sm={4}
-              xl={2}
-              xs={12}
+            item
+            lg={2}
+            sm={4}
+            xl={2}
+            xs={12}
             >
+            
               <Pm25Levels
                 background="#f8fe28"
                 pm25level="Moderate"
                 //pm25levelText="(12.1 - 35.4)"
-                
               />
+              
             </Grid>
 
             <Grid
-              item
-              lg={2}
-              sm={4}
-              xl={2}
-              xs={12}
+            item
+            lg={2}
+            sm={4}
+            xl={2}
+            xs={12}
             >
               <Pm25Levels
                 background="#ee8310"
@@ -374,11 +378,11 @@ const Dashboard = props => {
             </Grid>
 
             <Grid
-              item
-              lg={2}
-              sm={4}
-              xl={2}
-              xs={12}
+            item
+            lg={2}
+            sm={4}
+            xl={2}
+            xs={12}
             >
               <Pm25Levels
                 background="#fe0000"
@@ -389,26 +393,28 @@ const Dashboard = props => {
               />
             </Grid>
             <Grid
-              item
-              lg={2}
-              sm={4}
-              xl={2}
-              xs={12}
+            item
+            lg={2}
+            sm={4}
+            xl={2}
+            xs={12}
             >
-              <Pm25Levels
+
+            <Tooltip placement="bottom" title="Very Unheathy">
+                <Pm25Levels
                 background="#8639c0"
                 pm25level="Very unhealthy"
                 pm25levelColor="#FFFFFF"
-                //pm25levelText="(150.5 - 250.4)"           
-                
+                //pm25levelText="(150.5 - 250.4)" 
               />
+              </Tooltip>
             </Grid>
             <Grid
-              item
-              lg={2}
-              sm={4}
-              xl={2}
-              xs={12}
+            item
+            lg={2}
+            sm={4}
+            xl={2}
+            xs={12}
             >
               <Pm25Levels
                 background="#81202e"
@@ -423,6 +429,8 @@ const Dashboard = props => {
             </p> */}
                 
           </Grid> 
+          
+
         </Grid>
         
 

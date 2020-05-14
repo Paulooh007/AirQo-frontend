@@ -59,16 +59,16 @@ const Pm25Levels = props => {
       className={clsx(classes.root, className)}
     >
       <CardContent style = {pm25BgColor}>
-        {/* <Grid
+         {/* <Grid
           container
           justify="space-between"
         >
           <Grid item>
-            {/* <Avatar className={classes.avatar}> */}
-              {/* <SentimentSatisfiedSharpIcon className={classes.icon} style={pm25_levelColor} /> */}
-            {/* </Avatar> */}
-          {/* </Grid>
-        </Grid> */} 
+            <Avatar className={classes.avatar}>
+              <SentimentSatisfiedSharpIcon className={classes.icon} style={pm25_levelColor} /> 
+            </Avatar>
+          </Grid>
+        </Grid> */}
         <div className={classes.difference}>        
           <Typography
             className={classes.caption}
