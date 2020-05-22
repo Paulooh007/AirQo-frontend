@@ -18,11 +18,11 @@ def getmap():
     mercxend, mercyend = merc(xend, yend)
     gridsize = 20
 
-    url = "http://127.0.0.1:5000/api?xstart={}&xend={}&ystart={}&yend={}&gridsize={}".format(mercx0[0],
-                                                                                          mercxend[0],
-                                                                                          mercy0[0],
-                                                                                          mercyend[0],
-                                                                                          gridsize)
+    url = "https://map-backend-w7kzhvlewq-ez.a.run.app/api?xstart={}&xend={}&ystart={}&yend={}&gridsize={}".format(mercx0[0],
+                                                                                                                   mercxend[0],
+                                                                                                                   mercy0[0],
+                                                                                                                   mercyend[0],
+                                                                                                                   gridsize)
     init_json = requests.get(url).json()
 
     # Get map tiles
@@ -68,7 +68,7 @@ def getmap():
         var ystart = yr.start;
         var yend = yr.end;
         var gridsize = 20;
-        var url = "http://127.0.0.1:5000/api?xstart="+xstart+"&xend="+xend+"&ystart="+ystart+"&yend="+yend+"&gridsize="+gridsize;
+        var url = "https://map-backend-w7kzhvlewq-ez.a.run.app/api?xstart="+xstart+"&xend="+xend+"&ystart="+ystart+"&yend="+yend+"&gridsize="+gridsize;
 
         fetch(url)        
             .then(

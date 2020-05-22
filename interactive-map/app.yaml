@@ -1,5 +1,0 @@
-runtime: python37
-service: interactive-map
-resources:
-    disk_size_gb: 10
-    memory_gb: 1

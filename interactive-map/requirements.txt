@@ -1,8 +1,0 @@
-flask
-gpflow
-numpy
-pandas
-google-cloud-bigquery
-bokeh
-scipy
-matplotlib
