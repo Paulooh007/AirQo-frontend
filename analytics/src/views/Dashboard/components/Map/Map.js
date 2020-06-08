@@ -14,8 +14,10 @@ import { useEffect, useState } from 'react';
 import FullscreenControl from 'react-leaflet-fullscreen';
 import 'react-leaflet-fullscreen/dist/styles.css';
 import L from 'leaflet';
-import CheckboxContainer from './checkboxcontainer';
-// import Legend from "./Legend";
+// import { ShapeFile } from "react-leaflet-shapefile";
+import ReactDOM from "react-dom";
+import Filter from "./Filter";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,16 +74,7 @@ const Map = props => {
               aqi > 0   ? 'pm25Good' :
                 'pm25UnCategorised';
   }
-  let markerfilter = (box) =>{
-    return box > 250.4  ? 'Harzadous' :
-      box > 150.4  ? 'VeryUnHealthy' :
-        box > 55.4   ? 'UnHealthy' :
-          box > 35.4   ? 'UH4SG' :
-            box > 12   ? 'Moderate' :
-              box > 0   ? 'Good' :
-                'pm25UnCategorised';
-  }
-
+ 
   return (
     <Card
       {...rest}
@@ -111,19 +104,7 @@ const Map = props => {
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           />           
           {contacts.map((contact) => (
-                      
-          var grayscale = ({contact.Last_Hour_PM25_Value == 0?'':contact.Last_Hour_PM25_Value});
-          var streets   = {contact.Last_Hour_PM25_Value == 0?'':contact.Last_Hour_PM25_Value};
-          var metro   = {contact.Last_Hour_PM25_Value == 0?'':contact.Last_Hour_PM25_Value};
-          var mixed = {
-            "Grayscale": grayscale, // BaseMaps
-            "Streets": streets, 		// BaseMaps
-            "Metro": metro, 				// BaseMaps
-          };
-
-          L.control.layers(null, mixed).addTo(map);
-           
-
+                        
             <Marker 
               position={[contact.Latitude,contact.Longitude]}
               fill="true"
@@ -141,7 +122,7 @@ const Map = props => {
                 <h2>{contact.Parish} - {contact.Division} Division</h2> 
                 <h4>{contact.LocationCode}</h4>
 
-                <h1> {contact.Last_Hour_PM25_Value == 0?'':contact.Last_Hour_PM25_Value}</h1> 
+                <h1>{contact.Last_Hour_PM25_Value == 0?'':contact.Last_Hour_PM25_Value}</h1> 
                 <span>Last Refreshed: {contact.LastHour} (UTC)</span>
                 <Divider/>
              
@@ -149,8 +130,10 @@ const Map = props => {
                 
               </Popup>
             </Marker>   
-          ))}  
+            
+          ))} 
             <FullscreenControl position="topright" />
+            
         </LeafletMap>
       </CardContent>
     </Card>
