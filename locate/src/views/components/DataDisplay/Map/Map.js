@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import FullscreenControl from 'react-leaflet-fullscreen';
 import 'react-leaflet-fullscreen/dist/styles.css';
 import L from 'leaflet';
-import Filter from './FilterPowerSource.jsx';
+import Filter from './Filter.jsx';
 import axios from "axios";
 import ReactDOM from 'react-dom';
 // import '../../../../assets/scss/index.scss';
@@ -66,7 +66,6 @@ const Map = props => {
 
   useEffect(() => {
    fetch('http://127.0.0.1:5000/api/v1/device/monitor/status')
-    //fetch('http://127.0.0.1:5000/api/v1/dashboard/monitoringsites?organisation_name=KCCA')
       .then(res => res.json())
       .then((contactData) => {
         setContacts(contactData)
@@ -148,7 +147,7 @@ const Map = props => {
       
           <FullscreenControl position="topleft" />
 
-          {/* <Filter fetchFilteredData={fetchFilteredData} /> */}
+          <Filter fetchFilteredData={fetchFilteredData} />
 
         </LeafletMap>
         
