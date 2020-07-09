@@ -73,6 +73,12 @@ const prodConfig = {
     "https://device-monitoring-bknd-service-dot-airqo-250220.uc.r.appspot.com/api/v1/monitor/network/devices/bestperforming",
   GET_NETWORK_WORST_PERFORMING_DEVICES:
     "https://device-monitoring-bknd-service-dot-airqo-250220.uc.r.appspot.com/api/v1/monitor/network/devices/worstperforming",
+  GET_DEVICE_STATUS_SUMMARY:
+    "http://34.78.78.202:30006/api/v1/device/monitor/status",
+  GET_DEVICE_MAINTENANCE_LOG:
+    "http://34.78.78.202:30006/api/v1/device/monitor/maintenance_log",
+  GET_DEVICE_POWER_TYPE:
+    "http://34.78.78.202:30006/api/v1/device/monitor/power_type",
 };
 
 const devConfig = {
@@ -114,6 +120,12 @@ const devConfig = {
   REGISTER_DEVICE_URI: "http://127.0.0.1:3000/api/v1/devices/ts",
   ALL_DEVICES_URI: "http://127.0.0.1:3000/api/v1/devices",
   DEPLOY_DEVICE_URI: "http://127.0.0.1:3000/api/v1/devices/ts/deploy/device",
+  GET_DEVICE_STATUS_SUMMARY:
+    "http://localhost:4000/api/v1/device/monitor/status",
+  GET_DEVICE_MAINTENANCE_LOG:
+    "http://localhost:4000/api/v1/device/monitor/maintenance_log",
+  GET_DEVICE_POWER_TYPE:
+    "http://localhost:4000/api/v1/device/monitor/power_type",
   //DELETE_DEVICE_URI: "http://127.0.0.1:3000/api/api/v1/devices/ts/delete?device="
 };
 
