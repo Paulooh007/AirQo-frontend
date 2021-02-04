@@ -1,4 +1,3 @@
-import { FIREBAASE_CONFIG } from './../../app/firebase.config';
 import { NavController, NavParams, ToastController, ViewController, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
@@ -6,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { ApiProvider } from '../../providers/api/api';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { storage, initializeApp } from 'firebase';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -36,7 +34,7 @@ export class CameraPage {
     private viewCtrl: ViewController, private loadingCtrl: LoadingController, private http: HttpClient, 
     private alertCtrl: AlertController, public api: ApiProvider, private geolocation: Geolocation, private platform: Platform,
     private camera: Camera) {
-      initializeApp(FIREBAASE_CONFIG);
+      
   }
 
   // --------------------------------------------------------------------------------------------------------------------
@@ -115,14 +113,14 @@ export class CameraPage {
         correctOrientation: true
       }
       
-      const result    = await this.camera.getPicture(options);
-      const image     = `data:image/jpeg;base64,${result}`;
-      let image_name  = `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
-      const pictures  = storage().ref(`app-aqi/${image_name}`);
-      pictures.putString(image, 'data_url');
+      // const result    = await this.camera.getPicture(options);
+      // const image     = `data:image/jpeg;base64,${result}`;
+      // let image_name  = `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+      // const pictures  = storage().ref(`app-aqi/${image_name}`);
+      // pictures.putString(image, 'data_url');
 
-      this.ac_submission.preview  = image;
-      this.ac_submission.image    = `https://firebasestorage.googleapis.com/v0/b/airqo-frontend-media.appspot.com/o/app-aqi%2F${image_name}?alt=media&token=ad20f42b-0d9d-4c21-81c0-eccfd875ed91`;
+      // this.ac_submission.preview  = image;
+      // this.ac_submission.image    = `https://firebasestorage.googleapis.com/v0/b/airqo-frontend-media.appspot.com/o/app-aqi%2F${image_name}?alt=media&token=ad20f42b-0d9d-4c21-81c0-eccfd875ed91`;
     } catch (e) {
       this.toastCtrl.create({
         message: 'Unable to open camera',

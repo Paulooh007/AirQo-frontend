@@ -114,7 +114,7 @@ export class HomePage {
       }).catch((error) => {
         console.log('Error getting location: ', error);
         loader.dismiss();
-        this.getCoordinatesByIP();
+        // this.getCoordinatesByIP();
       });
     });
   }
