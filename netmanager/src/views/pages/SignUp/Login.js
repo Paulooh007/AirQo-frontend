@@ -126,7 +126,7 @@ class Login extends Component {
         <div
           className="container"
           style={{
-            marginTop: "4rem",
+            marginTop: "6rem",
             height: "auto",
             backgroundColor: "#fff",
             maxWidth: "1000px",
@@ -150,7 +150,7 @@ class Login extends Component {
                   <h4>
                     <b>Login</b>
                   </h4>
-                  <p className="grey-text text-darken-1">
+                  <p className="grey-text text-darken-1" style={{fontSize:"14px"}}>
                     Don't have an account?{" "}
                     <Link to="/request-access">Request Access</Link>
                   </p>
@@ -254,7 +254,7 @@ class Login extends Component {
                     marginTop: "5px",
                   }}
                 >
-                  <Link to="/forgot"> Forgot Password?</Link>
+                  <Link to="/forgot" style={{fontSize:"14px"}}> Forgot Password?</Link>
                 </div>
               </div>
             </Grid>
