@@ -155,7 +155,10 @@ class Login extends Component {
                     <Link to="/request-access">Request Access</Link>
                   </p>
                 </div>
-                <form noValidate onSubmit={this.onSubmit}>
+                <form noValidate onSubmit={this.onSubmit}
+                style={{
+                  backgroundColor:"#fff"
+                }}>
                   <CardContent
                     style={
                       isEmpty(
@@ -251,7 +254,7 @@ class Login extends Component {
                     marginTop: "5px",
                   }}
                 >
-                  <Link to="/forgot"> Forgotten Password?</Link>
+                  <Link to="/forgot"> Forgot Password?</Link>
                 </div>
               </div>
             </Grid>
