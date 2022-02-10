@@ -150,7 +150,7 @@ class Login extends Component {
                   <h4>
                     <b>Login</b>
                   </h4>
-                  <p className="grey-text text-darken-1" style={{fontSize:"14px"}}>
+                  <p className="grey-text text-darken-1 font-size-14">
                     Don't have an account?{" "}
                     <Link to="/request-access">Request Access</Link>
                   </p>
@@ -254,7 +254,7 @@ class Login extends Component {
                     marginTop: "5px",
                   }}
                 >
-                  <Link to="/forgot" style={{fontSize:"14px"}}> Forgot Password?</Link>
+                  <Link to="/forgot" className="font-size-14"> Forgot Password?</Link>
                 </div>
               </div>
             </Grid>
