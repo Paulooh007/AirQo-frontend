@@ -122,7 +122,7 @@ const AccountDetails = (props) => {
   };
 
   return (
-    <Card {...rest} className={clsx(classes.root, className)}>
+    <Card {...rest} className={clsx(classes.root, className), "theme form_theme"}>
       <form autoComplete="off" noValidate>
         <CardHeader subheader="The information can be edited" title="Profile" />
         <Divider />

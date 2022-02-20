@@ -21,6 +21,10 @@ const styles = {
   },
 };
 
+const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+defaultDark ? document.documentElement.setAttribute('data-theme', 'dark') : document.documentElement.setAttribute('data-theme', 'light');
+localStorage.setItem('colortheme', defaultDark ? 'dark' : 'light');
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -124,11 +128,10 @@ class Login extends Component {
     return (
       <AlertMinimal>
         <div
-          className="container"
+          className="container theme form_theme"
           style={{
             marginTop: "6rem",
             height: "auto",
-            backgroundColor: "#fff",
             maxWidth: "1000px",
           }}
         >
@@ -155,10 +158,7 @@ class Login extends Component {
                     <Link to="/request-access">Request Access</Link>
                   </p>
                 </div>
-                <form noValidate onSubmit={this.onSubmit}
-                style={{
-                  backgroundColor:"#fff"
-                }}>
+                <form noValidate onSubmit={this.onSubmit}>
                   <CardContent
                     style={
                       isEmpty(
@@ -212,6 +212,7 @@ class Login extends Component {
                           input: this.props.classes.textField,
                         },
                       }}
+                      className="text-field"
                     />
                     <div
                       style={{ display: "flex", alignItems: "center" }}

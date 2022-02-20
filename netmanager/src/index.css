@@ -6,35 +6,41 @@
   
   :root {
 	--background: #f4f6f8;
-	--text-primary: black;
+	--text-primary: #010101;
 	--text-secondary: royalblue;
-	--accent: purple;
+	--accent: #cbddea;
   }
 
   [data-theme='dark'] {
-	--background: black;
-	--text-primary: white;
-	--text-secondary: grey;
-	--accent: darkred;
+	--background: #1c1e21;
+	--text-primary: #fcf2ff;
+	--text-secondary: #bbb;
+	--accent: #2e333a;
   }
-  /* html {
-	height: 100%;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-  } */
   
   body {
 	background-color: var(--background) ;
 	color:var(--text-primary);
 	height: 100%;
 	margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
   }
   
+  form{
+	  background-color: var(--background);
+	  color: var(--text-primary);
+	  padding:10px
+  }
+
+  input{
+	  border: 0.2px solid var(--accent);
+	  color: var(--text-primary);
+  }
+
   a {
 	text-decoration: none;
   }
@@ -158,7 +164,7 @@
   
   .filter {
 	z-index: 1000;
-	background-color: rgba(255, 255, 255, 1);
+	background-color: var(--background);
 	position: absolute;
 	bottom: 20px;
 	left: 5px;
@@ -166,9 +172,8 @@
 	padding: 5px 10px;
 	font-family: "Open Sans", sans-serif;
 	font-weight: 300;
-	color: #000;
+	color: var(--text-primary);
 	border-radius: 5px;
-	background-color: white;
   }
   
   .filter__h2 {
@@ -441,6 +446,35 @@ font-size: 40px;
 font-size: 50px;
 }
 
+.theme{
+	background-color: var(--background);
+	color: var(--text-primary);
+}
+
+.theme.form_theme{
+	border: 1.8px solid var(--accent);
+}
+
+.theme .MuiTextField-root{
+	color: var(--text-primary);
+}
+
+.theme .MuiOutlinedInput-root,
+.theme .MuiOutlinedInput-input,
+.theme .MuiInputBase-root,
+.theme .MuiInputBase-formControl,
+.theme .MuiInputBase-input{
+	border: 0.8px solid var(--accent);
+	color: var(--text-primary);
+	background:  var(--background);
+}
+
+.theme .MuiInputLabel-root,
+.theme .MuiInputLabel-formControl,
+.theme .MuiFormLabel-root{
+	color: var(--text-primary);
+	background: var(--background);
+}
 
 
 	  

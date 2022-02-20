@@ -168,7 +168,7 @@ const Sidebar = (props) => {
       open={open}
       variant={variant}
     >
-      <div {...rest} className={clsx(classes.root, className)}>
+      <div {...rest} className={clsx(classes.root, className), "theme"}>
         <Profile />
         <Divider className={classes.divider} />
         <SidebarNav className={classes.nav} pages={pages} />
