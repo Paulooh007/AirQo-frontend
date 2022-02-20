@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import { Link as RouterLink, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import {
   AppBar,
@@ -18,14 +18,18 @@ import {
 } from "@material-ui/core";
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
 import InputIcon from "@material-ui/icons/Input";
-import HelpIcon from "@material-ui/icons/Help";
+import HelpIcon from "@material-ui/icons/HelpOutlineRounded";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import SettingsIcon from "@material-ui/icons/Settings";
+import AccountBoxIcon from "@material-ui/icons/AccountBoxOutlined";
+import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import { logoutUser } from "redux/Join/actions";
 import { useOrgData } from "redux/Join/selectors";
 import TransitionAlerts from "./TransitionAlerts";
+import DarkIcon from '@material-ui/icons/Brightness6Outlined';
+import LightIcon from '@material-ui/icons/FlareOutlined';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { darkMode, lightMode } from '../../../redux/ToggleMode/actions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,6 +78,7 @@ const Topbar = (props) => {
 
   const onLogoutClick = (e) => {
     e.preventDefault();
+    localStorage.removeItem('colortheme');
     props.logoutUser();
   };
 
@@ -154,6 +159,9 @@ const Topbar = (props) => {
       appendLeadingZeroes(newTime.getSeconds());
     setDate(time);
   }
+
+  const dispatch = useDispatch();
+  const theme = localStorage.getItem('colortheme');
 
   return (
     <AppBar {...rest} className={clsx(classes.root, className)}>
@@ -279,6 +287,24 @@ const Topbar = (props) => {
               </ListItemIcon>
               <ListItemText primary="Account" />
             </MenuItem>
+            {
+              theme === 'light' ? (
+                <MenuItem onClick={()=>dispatch(darkMode(theme))}>
+                  <ListItemIcon>
+                    <DarkIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dark Mode" />
+                </MenuItem>
+              ) :
+              (
+                  <MenuItem onClick={()=>dispatch(lightMode(theme))}>
+                  <ListItemIcon>
+                    <LightIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Light Mode" />
+                </MenuItem>
+              )
+            }
             <Divider />
             <MenuItem onClick={onLogoutClick}>
               <ListItemIcon>
@@ -312,13 +338,13 @@ const Topbar = (props) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
+          <AccountCircleIcon
             className={classes.signOutButton}
             color="inherit"
             onClick={handleOpenMenu}
           >
             <InputIcon />
-          </IconButton>
+          </AccountCircleIcon>
           <Menu
             id="menu-appbar"
             anchorEl={anchorEl}
@@ -346,6 +372,24 @@ const Topbar = (props) => {
               </ListItemIcon>
               <ListItemText primary="Account" />
             </MenuItem>
+            {
+              theme === 'light' ? (
+                <MenuItem onClick={()=>dispatch(darkMode(theme))}>
+                  <ListItemIcon>  
+                    <DarkIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dark Mode" />
+                </MenuItem>
+              ):
+              (
+                  <MenuItem onClick={()=>dispatch(lightMode(theme))}>
+                  <ListItemIcon>
+                    <LightIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Light Mode" />
+                </MenuItem>
+              )
+            }
             <Divider />
             <MenuItem onClick={onLogoutClick}>
               <ListItemIcon>

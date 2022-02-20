@@ -45,8 +45,10 @@ if (localStorage.jwtToken) {
   store.dispatch(loadSites());
 }
 
-const App = () => {
+const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+localStorage.setItem('colortheme', defaultDark ? 'dark' : 'light');
 
+const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
