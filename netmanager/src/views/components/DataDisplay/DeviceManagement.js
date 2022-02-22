@@ -9,7 +9,7 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import PowerIcon from "@material-ui/icons/Power";
 import Hidden from "@material-ui/core/Hidden";
 import Tooltip from "@material-ui/core/Tooltip";
-import Card from "../Card/Card.js";
+import Card from "../Card/Card.js"; 
 import moment from "moment";
 import { isEmpty, mapObject, omit, values } from "underscore";
 import {
