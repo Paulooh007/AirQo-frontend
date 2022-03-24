@@ -1,0 +1,212 @@
+@import "lib/colors";
+@import "lib/variables";
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+@mixin flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin text-wrapper-content{
+    margin-left: 12px;
+    h4{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        margin:0 0 4px 0;
+    }
+    div{
+        display: flex;
+        align-items: center;
+        small{
+            font-style: normal;
+            font-weight: 500;
+            font-size: 9px;
+            margin-left: 5px;
+            line-height: 14px;
+        }
+    }
+}
+
+@mixin circle {
+    width: 65px;
+    height: 62px;
+    background: linear-gradient(0deg, #E7EFFF, #E7EFFF), #FFFFFF;
+    border-radius: 32px;
+    margin-left: 16px;
+}
+
+
+.air-quality-section{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background: $aq-blue-1;
+    box-sizing: border-box;
+    padding: 50px 0;
+
+    .air-quality-header{
+        @include flex-column();
+        justify-content: center;
+        align-items: center;
+        padding:15px 0;
+        h2{
+            color:$aq-black-0;
+            font-weight:700;
+            font-size:40px;
+        }
+        p{
+            color:$aq-black-0;
+            font-weight:400;
+            font-size: 16px;  
+            line-height:20px;
+            text-align: center;
+            padding:0;
+            margin-top:-2%;
+        }
+        .air-quality-tabs{
+            @include flex-row();
+            align-items: center;
+            justify-content: space-between;
+            padding:4px;
+            background: $aq-white-0;
+            box-shadow: 0px 16px 32px rgba(185, 195, 217, 0.5);
+            border-radius: 16px;
+            width: 392px - 2*4px; 
+            height: 56px - 2*4px;
+            margin:5% 0;
+            
+            div:first-child{
+                background: $aq-blue-0;
+                border-radius: 4px;
+                margin: 0px 10px; 
+                width:180px;
+                height:36px;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                span{
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 16px;
+                    color: $aq-white-0;
+                }
+            }
+
+            div:last-child{
+                background: $aq-white-0;
+                border-radius: 4px;
+                margin: 0px 10px; 
+                width:180px;
+                height:36px;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                span{
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 16px;
+                    color: $aq-blue-0;
+                }
+            }
+        }
+    }
+    .air-quality-content{
+        @include flex-row();
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        grid-template-columns: 428px 1fr;
+        width: 990px;
+        height: 400px;
+        background: $aq-white-0;
+        border-radius: 8px;
+        margin-top: 20px;
+        padding:0 20px;
+        .content-container{
+            padding:0 0 0 30px;
+            .selected{
+                display: flex;
+                align-items: center;
+                width: 344px;
+                height: 96px;
+                background: rgba(244, 248, 255, 0.7);
+                border: 0.8px solid $aq-blue-0;
+                box-sizing: border-box;
+                border-radius: 8px;
+                .circle{
+                    @include circle();
+                }
+                .text-wrapper{
+                    @include text-wrapper-content();
+                }
+            }
+            .unselected{
+                display: flex;
+                align-items: center;
+                width: 344px;
+                height: 96px;
+                border: 0.5px solid rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                border-radius: 8px;
+                margin-top: 16px;
+                .circle{
+                    @include circle();
+                }
+                .text-wrapper{
+                    @include text-wrapper-content();
+                }
+            }
+        }
+        .image-container{
+            background: #FFFFFF;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+    }
+}
+
+@media(max-width:$mainBreakPoint){
+    .air-quality-section{
+        width:auto;
+        padding: 0 0 50px 0;
+        .air-quality-header{
+            p{
+                text-align: left;
+            }
+            .air-quality-tabs{
+                width: 290px - 2*4px; 
+                height: 52px - 2*4px;
+                border-radius: 8px;
+                div:first-child{
+                    width:150px;
+                    height:30px;
+                    span{
+                        font-size: 12px;
+                    }
+                }
+                div:last-child{
+                    width:145px;
+                    height:30px;
+                    span{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .air-quality-content{
+            @include flex-column();
+            padding: 0 0 30px 0;
+        }
+    }
+}
