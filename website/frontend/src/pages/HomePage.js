@@ -6,12 +6,14 @@ import TopBar from '../components/nav/TopBar';
 import GetApp from '../components/get-app/GetApp';
 import MapSection from '../components/MapSection/MapSection';
 import { NewsletterSection } from '../components/NewsletterSection';
+import AirQuality from '../components/AirQuality';
 
 const HomePage = () => (
     <Page>
         <div className="HomePage">
             <TopBar />
             <Hero />
+            <AirQuality />
             <Monitor />
             <MapSection />
             <GetApp />
