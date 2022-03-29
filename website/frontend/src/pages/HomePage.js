@@ -7,6 +7,7 @@ import GetApp from '../components/get-app/GetApp';
 import MapSection from '../components/MapSection/MapSection';
 import { NewsletterSection } from '../components/NewsletterSection';
 import AirQuality from '../components/AirQuality';
+import ApiSection from '../components/ApiSection/ApiSection';
 
 const HomePage = () => (
     <Page>
@@ -15,6 +16,7 @@ const HomePage = () => (
             <Hero />
             <AirQuality />
             <Monitor />
+            <ApiSection />
             <MapSection />
             <GetApp />
             <NewsletterSection />
